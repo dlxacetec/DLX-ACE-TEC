@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DLX Ace Tec – Software, data and visuals</title>
+<meta name="description" content="DLX Ace Tec designs software, builds data pipelines, manages ads, and produces photo, video, drone and 3D walkthrough content.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#071a2b;--ink:#eef6fb;--dim:#97b4c9;--ice:#7fd6ff;--hot:#ff8a3d;--line:rgba(127,214,255,.22)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,system-ui,sans-serif;font-size:17px;line-height:1.55}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-2}
+.veil{position:fixed;inset:0;z-index:-1;background:linear-gradient(90deg,var(--bg) 0%,rgba(7,26,43,.78) 38%,rgba(7,26,43,0) 75%)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--hot);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.brand{font-stretch:125%;font-weight:800;font-size:21px;text-decoration:none}
+.brand i{font-style:normal;color:var(--hot)}
+nav a{margin-left:24px;text-decoration:none;color:var(--dim)}
+nav a:hover{color:var(--ink)}
+.hero{min-height:78vh;display:flex;flex-direction:column;justify-content:center;padding:40px 0 70px}
+h1{font-stretch:120%;font-weight:800;font-size:clamp(38px,7.2vw,86px);line-height:1;margin:0 0 24px;max-width:10.5em;letter-spacing:-.01em}
+.hero p{max-width:31em;margin:0 0 32px;font-size:20px;color:var(--dim)}
+.btn{align-self:flex-start;display:inline-block;background:var(--hot);color:#1d0d00;font-weight:700;padding:14px 26px;border-radius:999px;text-decoration:none;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+h2{font-stretch:112%;font-weight:700;font-size:clamp(26px,4vw,40px);margin:0 0 28px}
+.list{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;padding:26px 20px;border-bottom:1px solid var(--line);background:rgba(7,26,43,.72);backdrop-filter:blur(8px);border-left:3px solid transparent;transition:border-color .2s,background .2s}
+.row:hover{border-left-color:var(--hot);background:rgba(10,40,66,.85)}
+.row h3{margin:0;font-stretch:108%;font-weight:700;font-size:23px;line-height:1.2}
+.row p{margin:0;color:var(--dim)}
+.contact{padding:90px 0 60px}
+.contact p{color:var(--dim);max-width:30em;margin:0 0 28px}
+footer{padding:24px 0 36px;color:var(--dim);font-size:14px}
+section{scroll-margin-top:20px}
+@media(max-width:760px){.row{grid-template-columns:1fr;gap:8px}.veil{background:rgba(7,26,43,.62)}nav a{margin-left:16px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="veil"></div>
+
+<div class="wrap">
+  <header>
+    <a class="brand" href="#">DLX <i>Ace</i> Tec</a>
+    <nav><a href="#services">Services</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <section class="hero">
+    <h1>Software, data and visuals, built under one roof.</h1>
+    <p>We design software, collect and organise data, run your ads, and film and animate buildings so people want to visit, rent or buy.</p>
+    <a class="btn" href="#contact">Start a project</a>
+  </section>
+
+  <section id="services">
+    <h2>What we do</h2>
+    <div class="list">
+      <div class="row"><h3>Software design and building</h3><p>Websites, apps and business tools, designed and built from the first sketch to launch.</p></div>
+      <div class="row"><h3>Data scraping and pipelines</h3><p>Collect data from the web and turn it into clean, organised feeds your business can use.</p></div>
+      <div class="row"><h3>Ads management</h3><p>Setting up, running and improving your online ad campaigns.</p></div>
+      <div class="row"><h3>Photo, video and drone production</h3><p>Professional photos, video and aerial footage for tourism and real estate.</p></div>
+      <div class="row"><h3>Cinematic 3D walkthroughs</h3><p>Animated tours that take viewers through a building, whether it exists yet or not.</p></div>
+      <div class="row"><h3>Software ideas, developed and pitched</h3><p>We create large software ideas and pitch them to people with the money to buy the idea and the software outright.</p></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Have a project or an idea?</h2>
+    <p>Tell us what you need and we’ll reply with how we can help.</p>
+    <a class="btn" href="mailto:YOUR_EMAIL@example.com">Email us</a>
+  </section>
+
+  <footer>© 2026 DLX Ace Tec</footer>
+</div>
+
+<script>
+// Live background: a slowly turning wireframe city with data flowing along its streets
+(function(){
+  const c=document.getElementById('bg'),x=c.getContext('2d'),D=Math.min(devicePixelRatio||1,2);
+  let W,H,mx=0,ang=0,t0=performance.now();
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){W=innerWidth;H=innerHeight;c.width=W*D;c.height=H*D;x.setTransform(D,0,0,D,0,0)}
+  addEventListener('resize',size);size();
+  addEventListener('pointermove',e=>{mx=(e.clientX/W-.5)});
+  const B=[];
+  for(let i=-4;i<=4;i++)for(let j=-4;j<=4;j++){
+    if(Math.random()<.3)continue;
+    const core=Math.abs(i)+Math.abs(j)<4;
+    B.push({x:i*70,z:j*70,w:22+Math.random()*14,h:25+Math.random()*(core?210:90)});
+  }
+  const E=[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+  const P=[];
+  for(let k=0;k<46;k++)P.push({ax:k%2,l:(Math.floor(Math.random()*9)-4)*70+35,p:Math.random()*700-350,v:(.4+Math.random()*.9)*(Math.random()<.5?-1:1)});
+  function pr(px,py,pz,a,tilt){
+    const ca=Math.cos(a),sa=Math.sin(a),X=px*ca-pz*sa;let Z=px*sa+pz*ca;
+    const ct=Math.cos(tilt),st=Math.sin(tilt),Y=py*ct-Z*st;Z=py*st+Z*ct;
+    const s=950/(950+Z+260),cx=W>760?W*.68:W*.5;
+    return[cx+X*s*1.15,H*.58-Y*s*1.15,s];
+  }
+  function frame(now){
+    const dt=Math.min(now-t0,50);t0=now;
+    if(!still)ang+=dt*.00011;
+    const a=ang+mx*.5,tilt=.52;
+    x.clearRect(0,0,W,H);
+    x.lineWidth=1;
+    x.strokeStyle='rgba(127,214,255,.10)';
+    x.beginPath();
+    for(let g=-315;g<=315;g+=70){
+      let p=pr(g,0,-315,a,tilt),q=pr(g,0,315,a,tilt);x.moveTo(p[0],p[1]);x.lineTo(q[0],q[1]);
+      p=pr(-315,0,g,a,tilt);q=pr(315,0,g,a,tilt);x.moveTo(p[0],p[1]);x.lineTo(q[0],q[1]);
+    }
+    x.stroke();
+    for(const b of B){
+      const hw=b.w/2,v=[];
+      for(const y of[0,b.h])for(const[sx,sz]of[[-1,-1],[1,-1],[1,1],[-1,1]])v.push(pr(b.x+sx*hw,y,b.z+sz*hw,a,tilt));
+      x.beginPath();
+      for(let e=0;e<12;e++){const m=E[e];if(e<4)continue;x.moveTo(v[m[0]][0],v[m[0]][1]);x.lineTo(v[m[1]][0],v[m[1]][1])}
+      x.strokeStyle='rgba(127,214,255,.2)';x.stroke();
+      x.beginPath();
+      for(let e=4;e<8;e++){const m=E[e];x.moveTo(v[m[0]][0],v[m[0]][1]);x.lineTo(v[m[1]][0],v[m[1]][1])}
+      x.strokeStyle='rgba(127,214,255,.5)';x.stroke();
+    }
+    for(const p of P){
+      if(!still){p.p+=p.v*dt*.06;if(p.p>350)p.p=-350;if(p.p<-350)p.p=350}
+      const q=p.ax?pr(p.l,0,p.p,a,tilt):pr(p.p,0,p.l,a,tilt);
+      x.fillStyle='rgba(255,138,61,.95)';
+      x.beginPath();x.arc(q[0],q[1],2.2*q[2]+.6,0,6.283);x.fill();
+      x.fillStyle='rgba(255,138,61,.18)';
+      x.beginPath();x.arc(q[0],q[1],7*q[2]+1,0,6.283);x.fill();
+    }
+    if(!still)requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyBaIvHR5X-J2SU1tFVtHLfS5sMaq_qA8qc",
+    authDomain: "dlx-ace-tec.firebaseapp.com",
+    projectId: "dlx-ace-tec",
+    storageBucket: "dlx-ace-tec.firebasestorage.app",
+    messagingSenderId: "837761942916",
+    appId: "1:837761942916:web:034b900944d15abb0149d1"
+  };
+  try { initializeApp(firebaseConfig); } catch (err) { console.error("Firebase setup failed:", err); }
+</script>
+</body>
+</html>
