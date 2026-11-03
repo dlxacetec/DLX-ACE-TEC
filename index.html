@@ -30,10 +30,10 @@ a{color:inherit}
 .btn.ghost{background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.5)}
 /* hero with real photo */
 .hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;padding:80px 24px 100px;
- background:radial-gradient(55% 70% at 75% 45%,rgba(30,107,255,.35),transparent 70%),url("DLX%20ACE%20TECH%20LOGO.png") right 4% center/min(54vw,780px) auto no-repeat,#000}
+ background:linear-gradient(105deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.7) 100%),url("DLX%20ACE%20TEC%20HEROES%20IMAGE.png") center/cover no-repeat,#030a1c}
 .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(34,184,255,.22) 1px,transparent 1px);background-size:40px 40px;-webkit-mask-image:radial-gradient(80% 80% at 50% 50%,#000,transparent);mask-image:radial-gradient(80% 80% at 50% 50%,#000,transparent)}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:140px;background:linear-gradient(transparent,#000)}
-.split{position:relative;z-index:1;max-width:1200px;width:100%;margin:0 auto;display:grid;grid-template-columns:1fr;align-items:center}
+.split{position:relative;z-index:1;max-width:1200px;width:100%;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
 .badge{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--cy);border:1px solid var(--line);padding:7px 16px;background:rgba(30,107,255,.1);margin-bottom:22px}
 .badge i{width:7px;height:7px;border-radius:50%;background:var(--cy);box-shadow:0 0 10px var(--cy);animation:p 2s infinite}
 @keyframes p{50%{opacity:.3}}
@@ -45,6 +45,7 @@ h1{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.1;letter-spacing
 .stat b{display:block;font-size:24px;font-weight:800;line-height:1.1}
 .stat span{font-size:12px;color:var(--dim)}
 .cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-logo{width:100%;max-width:470px;justify-self:end;mix-blend-mode:screen;filter:drop-shadow(0 0 40px rgba(30,107,255,.6))}
 /* why */
 .why{padding:90px 24px 20px;text-align:center}
 .why h2,.build h2{font-size:clamp(26px,3.6vw,42px);font-weight:800;line-height:1.1;margin-bottom:14px}
@@ -82,7 +83,7 @@ footer{padding:24px;text-align:center;color:var(--dim);font-size:14px;border-top
 .opt{display:block;width:100%;margin-bottom:10px;padding:13px 16px;font:inherit;font-weight:600;color:#fff;background:rgba(30,107,255,.1);border:1px solid #1c2a4a;cursor:pointer;transition:background .2s,border-color .2s}
 .opt:hover{background:rgba(30,107,255,.35);border-color:var(--cy)}
 .x{position:absolute;top:8px;right:14px;background:none;border:0;color:var(--dim);font-size:28px;cursor:pointer}
-@media(max-width:860px){.split{grid-template-columns:1fr}.hero{background-position:center bottom 20px;background-size:92% auto;padding-bottom:260px}.links a{display:none}.stat{padding:12px 16px}.hero{padding-top:60px}}
+@media(max-width:860px){.split{grid-template-columns:1fr}.hero-logo{display:none}.links a{display:none}.stat{padding:12px 16px}.hero{padding-top:60px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -99,6 +100,7 @@ footer{padding:24px;text-align:center;color:var(--dim);font-size:14px;border-top
     <p class="lead">We build software, collect and organise data, run your ads, film and animate buildings, and help you find the funding to grow.</p>
     <div class="cta"><button class="btn" data-start>Get started</button><a class="btn ghost" href="#build">See what we build</a></div>
   </div>
+  <img class="hero-logo" src="DLX%20ACE%20TECH%20LOGO.png" alt="DLX Ace Tec, dlxacetec.com">
 </div></section>
 
 <section class="why">
