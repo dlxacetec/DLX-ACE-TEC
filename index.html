@@ -9,42 +9,71 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#071a2b;--ink:#eef6fb;--dim:#97b4c9;--ice:#7fd6ff;--hot:#ff8a3d;--line:rgba(127,214,255,.22)}
+:root{--ink:#f1f6ff;--dim:#9fb0c8}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,system-ui,sans-serif;font-size:17px;line-height:1.55}
-#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-2}
-.veil{position:fixed;inset:0;z-index:-1;background:linear-gradient(90deg,var(--bg) 0%,rgba(7,26,43,.78) 38%,rgba(7,26,43,0) 75%)}
+body{margin:0;background:#01040a;color:var(--ink);font-family:Archivo,system-ui,sans-serif;font-size:17px;line-height:1.55;overflow-x:hidden}
+/* background: black into deep blue, with slow drifting glows */
+.sky{position:fixed;inset:0;z-index:-3;background:linear-gradient(160deg,#000 0%,#030b1d 40%,#06173a 70%,#010309 100%)}
+.glow{position:fixed;z-index:-3;border-radius:50%;filter:blur(90px);opacity:.55;animation:drift 22s ease-in-out infinite alternate}
+.g1{width:55vmax;height:55vmax;left:-15vmax;top:-10vmax;background:#0a2c78}
+.g2{width:45vmax;height:45vmax;right:-12vmax;bottom:-12vmax;background:#0b1f5c;animation-duration:28s}
+.g3{width:30vmax;height:30vmax;left:35vw;top:30vh;background:#041238;animation-duration:34s}
+@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.15)}}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-2;opacity:.7}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--hot);outline-offset:3px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 header{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
 .brand{font-stretch:125%;font-weight:800;font-size:21px;text-decoration:none}
-.brand i{font-style:normal;color:var(--hot)}
+.brand i{font-style:normal;color:#4cc9ff}
 nav a{margin-left:24px;text-decoration:none;color:var(--dim)}
-nav a:hover{color:var(--ink)}
-.hero{min-height:78vh;display:flex;flex-direction:column;justify-content:center;padding:40px 0 70px}
+nav a:hover{color:#fff}
+.hero{min-height:72vh;display:flex;flex-direction:column;justify-content:center;padding:40px 0 60px}
 h1{font-stretch:120%;font-weight:800;font-size:clamp(38px,7.2vw,86px);line-height:1;margin:0 0 24px;max-width:10.5em;letter-spacing:-.01em}
 .hero p{max-width:31em;margin:0 0 32px;font-size:20px;color:var(--dim)}
-.btn{align-self:flex-start;display:inline-block;background:var(--hot);color:#1d0d00;font-weight:700;padding:14px 26px;border-radius:999px;text-decoration:none;transition:transform .2s}
-.btn:hover{transform:translateY(-2px)}
-h2{font-stretch:112%;font-weight:700;font-size:clamp(26px,4vw,40px);margin:0 0 28px}
-.list{border-top:1px solid var(--line)}
-.row{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;padding:26px 20px;border-bottom:1px solid var(--line);background:rgba(7,26,43,.72);backdrop-filter:blur(8px);border-left:3px solid transparent;transition:border-color .2s,background .2s}
-.row:hover{border-left-color:var(--hot);background:rgba(10,40,66,.85)}
-.row h3{margin:0;font-stretch:108%;font-weight:700;font-size:23px;line-height:1.2}
-.row p{margin:0;color:var(--dim)}
-.contact{padding:90px 0 60px}
+.btn{align-self:flex-start;display:inline-block;background:linear-gradient(90deg,#2f7bff,#4cc9ff);color:#00111f;font-weight:700;padding:14px 28px;border-radius:999px;text-decoration:none;box-shadow:0 0 30px rgba(76,201,255,.35);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(76,201,255,.6)}
+h2{font-stretch:112%;font-weight:700;font-size:clamp(26px,4vw,40px);margin:0 0 8px}
+.sub{margin:0 0 36px;color:var(--dim)}
+/* floating service boxes */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;padding-bottom:20px}
+.float{animation:bob 6s ease-in-out infinite}
+.float:nth-child(2){animation-delay:-1s;animation-duration:7s}
+.float:nth-child(3){animation-delay:-2s;animation-duration:6.5s}
+.float:nth-child(4){animation-delay:-3s;animation-duration:7.5s}
+.float:nth-child(5){animation-delay:-4s}
+.float:nth-child(6){animation-delay:-5s;animation-duration:7s}
+@keyframes bob{50%{transform:translateY(-12px)}}
+.card{--c:#4cc9ff;display:flex;flex-direction:column;height:100%;min-height:200px;text-align:left;font:inherit;color:inherit;cursor:pointer;
+  padding:26px;border-radius:20px;border:1px solid color-mix(in srgb,var(--c) 55%,transparent);
+  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.02));backdrop-filter:blur(14px);
+  box-shadow:0 0 26px color-mix(in srgb,var(--c) 28%,transparent),0 18px 40px rgba(0,0,0,.45);
+  transition:transform .25s,box-shadow .25s,background .25s,border-color .25s}
+.card:hover{transform:translateY(-8px) scale(1.03);border-color:var(--c);
+  background:linear-gradient(145deg,color-mix(in srgb,var(--c) 26%,transparent),rgba(255,255,255,.03));
+  box-shadow:0 0 50px color-mix(in srgb,var(--c) 55%,transparent),0 24px 50px rgba(0,0,0,.5)}
+.card .dot{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:0 0 16px var(--c);margin-bottom:18px}
+.card h3{margin:0 0 8px;font-stretch:108%;font-weight:700;font-size:21px;line-height:1.25}
+.card p{margin:0;color:var(--dim)}
+.card .more{display:none;margin-top:16px;font-weight:700}
+.card.on{transform:translateY(-8px) scale(1.04);border-color:#fff;
+  background:linear-gradient(145deg,var(--c),color-mix(in srgb,var(--c) 40%,#000));
+  box-shadow:0 0 70px color-mix(in srgb,var(--c) 70%,transparent),0 24px 50px rgba(0,0,0,.5);color:#fff}
+.card.on p{color:rgba(255,255,255,.92)}
+.card.on .dot{background:#fff;box-shadow:0 0 18px #fff}
+.card.on .more{display:block}
+.contact{padding:80px 0 50px}
 .contact p{color:var(--dim);max-width:30em;margin:0 0 28px}
 footer{padding:24px 0 36px;color:var(--dim);font-size:14px}
 section{scroll-margin-top:20px}
-@media(max-width:760px){.row{grid-template-columns:1fr;gap:8px}.veil{background:rgba(7,26,43,.62)}nav a{margin-left:16px}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:760px){.cards{grid-template-columns:1fr}nav a{margin-left:16px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
+<div class="sky"></div><div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
 <canvas id="bg" aria-hidden="true"></canvas>
-<div class="veil"></div>
 
 <div class="wrap">
   <header>
@@ -60,57 +89,67 @@ section{scroll-margin-top:20px}
 
   <section id="services">
     <h2>What we do</h2>
-    <div class="list">
-      <div class="row"><h3>Software design and building</h3><p>Websites, apps and business tools, designed and built from the first sketch to launch.</p></div>
-      <div class="row"><h3>Data scraping and pipelines</h3><p>Collect data from the web and turn it into clean, organised feeds your business can use.</p></div>
-      <div class="row"><h3>Ads management</h3><p>Setting up, running and improving your online ad campaigns.</p></div>
-      <div class="row"><h3>Photo, video and drone production</h3><p>Professional photos, video and aerial footage for tourism and real estate.</p></div>
-      <div class="row"><h3>Cinematic 3D walkthroughs</h3><p>Animated tours that take viewers through a building, whether it exists yet or not.</p></div>
-      <div class="row"><h3>Software ideas, developed and pitched</h3><p>We create large software ideas and pitch them to people with the money to buy the idea and the software outright.</p></div>
+    <p class="sub">Select a service to find out more.</p>
+    <div class="cards">
+      <div class="float"><button class="card" style="--c:#38bdf8" data-s="Software design and building"><span class="dot"></span><h3>Software design and building</h3><p>Websites, apps and business tools, designed and built from the first sketch to launch.</p><span class="more">Ask about this →</span></button></div>
+      <div class="float"><button class="card" style="--c:#a78bfa" data-s="Data scraping and pipelines"><span class="dot"></span><h3>Data scraping and pipelines</h3><p>Collect data from the web and turn it into clean, organised feeds your business can use.</p><span class="more">Ask about this →</span></button></div>
+      <div class="float"><button class="card" style="--c:#f472b6" data-s="Ads management"><span class="dot"></span><h3>Ads management</h3><p>Setting up, running and improving your online ad campaigns.</p><span class="more">Ask about this →</span></button></div>
+      <div class="float"><button class="card" style="--c:#fb923c" data-s="Photo, video and drone production"><span class="dot"></span><h3>Photo, video and drone production</h3><p>Professional photos, video and aerial footage for tourism and real estate.</p><span class="more">Ask about this →</span></button></div>
+      <div class="float"><button class="card" style="--c:#34d399" data-s="Cinematic 3D walkthroughs"><span class="dot"></span><h3>Cinematic 3D walkthroughs</h3><p>Animated tours that take viewers through a building, whether it exists yet or not.</p><span class="more">Ask about this →</span></button></div>
+      <div class="float"><button class="card" style="--c:#facc15" data-s="Software ideas, developed and pitched"><span class="dot"></span><h3>Software ideas, developed and pitched</h3><p>We create large software ideas and pitch them to people with the money to buy the idea and the software outright.</p><span class="more">Ask about this →</span></button></div>
     </div>
   </section>
 
   <section id="contact" class="contact">
     <h2>Have a project or an idea?</h2>
-    <p>Tell us what you need and we’ll reply with how we can help.</p>
-    <a class="btn" href="mailto:YOUR_EMAIL@example.com">Email us</a>
+    <p id="cmsg">Tell us what you need and we’ll reply with how we can help.</p>
+    <a class="btn" id="mail" href="mailto:YOUR_EMAIL@example.com">Email us</a>
   </section>
 
   <footer>© 2026 DLX Ace Tec</footer>
 </div>
 
 <script>
-// Live background: a slowly turning wireframe city with data flowing along its streets
+// Selecting a service highlights it and points the email button at that service
+const EMAIL="YOUR_EMAIL@example.com";
+const cards=document.querySelectorAll(".card"),mail=document.getElementById("mail"),cmsg=document.getElementById("cmsg");
+cards.forEach(c=>c.addEventListener("click",()=>{
+  const was=c.classList.contains("on");
+  cards.forEach(k=>k.classList.remove("on"));
+  if(was){mail.href="mailto:"+EMAIL;cmsg.textContent="Tell us what you need and we’ll reply with how we can help.";return}
+  c.classList.add("on");
+  mail.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("Enquiry: "+c.dataset.s);
+  cmsg.textContent="You selected “"+c.dataset.s+"”. Email us and we’ll get back to you.";
+}));
+
+// Live background: wireframe city with coloured data flowing through its streets
 (function(){
-  const c=document.getElementById('bg'),x=c.getContext('2d'),D=Math.min(devicePixelRatio||1,2);
+  const c=document.getElementById("bg"),x=c.getContext("2d"),D=Math.min(devicePixelRatio||1,2);
   let W,H,mx=0,ang=0,t0=performance.now();
-  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const col=["56,189,248","167,139,250","244,114,182","251,146,60","52,211,153","250,204,21"];
   function size(){W=innerWidth;H=innerHeight;c.width=W*D;c.height=H*D;x.setTransform(D,0,0,D,0,0)}
-  addEventListener('resize',size);size();
-  addEventListener('pointermove',e=>{mx=(e.clientX/W-.5)});
+  addEventListener("resize",size);size();
+  addEventListener("pointermove",e=>{mx=e.clientX/W-.5});
   const B=[];
   for(let i=-4;i<=4;i++)for(let j=-4;j<=4;j++){
     if(Math.random()<.3)continue;
-    const core=Math.abs(i)+Math.abs(j)<4;
-    B.push({x:i*70,z:j*70,w:22+Math.random()*14,h:25+Math.random()*(core?210:90)});
+    B.push({x:i*70,z:j*70,w:22+Math.random()*14,h:25+Math.random()*(Math.abs(i)+Math.abs(j)<4?210:90)});
   }
-  const E=[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
   const P=[];
-  for(let k=0;k<46;k++)P.push({ax:k%2,l:(Math.floor(Math.random()*9)-4)*70+35,p:Math.random()*700-350,v:(.4+Math.random()*.9)*(Math.random()<.5?-1:1)});
+  for(let k=0;k<50;k++)P.push({ax:k%2,l:(Math.floor(Math.random()*9)-4)*70+35,p:Math.random()*700-350,v:(.4+Math.random()*.9)*(Math.random()<.5?-1:1),c:col[k%6]});
   function pr(px,py,pz,a,tilt){
     const ca=Math.cos(a),sa=Math.sin(a),X=px*ca-pz*sa;let Z=px*sa+pz*ca;
     const ct=Math.cos(tilt),st=Math.sin(tilt),Y=py*ct-Z*st;Z=py*st+Z*ct;
-    const s=950/(950+Z+260),cx=W>760?W*.68:W*.5;
-    return[cx+X*s*1.15,H*.58-Y*s*1.15,s];
+    const s=950/(950+Z+260);
+    return[(W>760?W*.66:W*.5)+X*s*1.2,H*.55-Y*s*1.2,s];
   }
   function frame(now){
     const dt=Math.min(now-t0,50);t0=now;
-    if(!still)ang+=dt*.00011;
-    const a=ang+mx*.5,tilt=.52;
-    x.clearRect(0,0,W,H);
-    x.lineWidth=1;
-    x.strokeStyle='rgba(127,214,255,.10)';
-    x.beginPath();
+    if(!still)ang+=dt*.0001;
+    const a=ang+mx*.5,tilt=.5;
+    x.clearRect(0,0,W,H);x.lineWidth=1;
+    x.strokeStyle="rgba(90,150,255,.12)";x.beginPath();
     for(let g=-315;g<=315;g+=70){
       let p=pr(g,0,-315,a,tilt),q=pr(g,0,315,a,tilt);x.moveTo(p[0],p[1]);x.lineTo(q[0],q[1]);
       p=pr(-315,0,g,a,tilt);q=pr(315,0,g,a,tilt);x.moveTo(p[0],p[1]);x.lineTo(q[0],q[1]);
@@ -120,19 +159,17 @@ section{scroll-margin-top:20px}
       const hw=b.w/2,v=[];
       for(const y of[0,b.h])for(const[sx,sz]of[[-1,-1],[1,-1],[1,1],[-1,1]])v.push(pr(b.x+sx*hw,y,b.z+sz*hw,a,tilt));
       x.beginPath();
-      for(let e=0;e<12;e++){const m=E[e];if(e<4)continue;x.moveTo(v[m[0]][0],v[m[0]][1]);x.lineTo(v[m[1]][0],v[m[1]][1])}
-      x.strokeStyle='rgba(127,214,255,.2)';x.stroke();
+      for(let i=0;i<4;i++){x.moveTo(v[i][0],v[i][1]);x.lineTo(v[i+4][0],v[i+4][1]);const n=(i+1)%4;x.moveTo(v[i][0],v[i][1]);x.lineTo(v[n][0],v[n][1])}
+      x.strokeStyle="rgba(90,150,255,.22)";x.stroke();
       x.beginPath();
-      for(let e=4;e<8;e++){const m=E[e];x.moveTo(v[m[0]][0],v[m[0]][1]);x.lineTo(v[m[1]][0],v[m[1]][1])}
-      x.strokeStyle='rgba(127,214,255,.5)';x.stroke();
+      for(let i=4;i<8;i++){const n=4+(i-3)%4;x.moveTo(v[i][0],v[i][1]);x.lineTo(v[n][0],v[n][1])}
+      x.strokeStyle="rgba(140,190,255,.55)";x.stroke();
     }
     for(const p of P){
       if(!still){p.p+=p.v*dt*.06;if(p.p>350)p.p=-350;if(p.p<-350)p.p=350}
       const q=p.ax?pr(p.l,0,p.p,a,tilt):pr(p.p,0,p.l,a,tilt);
-      x.fillStyle='rgba(255,138,61,.95)';
-      x.beginPath();x.arc(q[0],q[1],2.2*q[2]+.6,0,6.283);x.fill();
-      x.fillStyle='rgba(255,138,61,.18)';
-      x.beginPath();x.arc(q[0],q[1],7*q[2]+1,0,6.283);x.fill();
+      x.fillStyle="rgba("+p.c+",.95)";x.beginPath();x.arc(q[0],q[1],2.2*q[2]+.6,0,6.283);x.fill();
+      x.fillStyle="rgba("+p.c+",.2)";x.beginPath();x.arc(q[0],q[1],7*q[2]+1,0,6.283);x.fill();
     }
     if(!still)requestAnimationFrame(frame);
   }
