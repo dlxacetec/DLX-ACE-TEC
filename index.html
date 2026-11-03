@@ -9,136 +9,146 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..800;1,62..125,400..800&display=swap" rel="stylesheet">
 <style>
-:root{--bk:#000;--blue:#1e6bff;--cy:#22b8ff;--ch:linear-gradient(180deg,#fff 0%,#c9d0da 38%,#7d8794 52%,#e6eaf0 70%,#9aa3b0 100%);--ink:#eef2f8;--dim:#98a3b5}
-*{box-sizing:border-box}
+:root{--blue:#1e6bff;--cy:#22b8ff;--ch:linear-gradient(180deg,#fff 0%,#c9d0da 38%,#8a94a3 52%,#e6eaf0 70%,#a3acb9 100%);--blu:linear-gradient(100deg,#1e6bff,#22b8ff);--ink:#eef2f8;--dim:#9aa6b8;--line:rgba(120,170,255,.2)}
+*{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
-body{margin:0;background:#000;color:var(--ink);font-family:Archivo,system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:hidden}
+body{background:#000;color:var(--ink);font-family:Archivo,system-ui,sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--cy);outline-offset:3px}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 .chrome{background:var(--ch);-webkit-background-clip:text;background-clip:text;color:transparent}
-header{position:fixed;top:0;left:0;right:0;z-index:10;background:linear-gradient(#000,rgba(0,0,0,.0))}
-header .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:18px;padding-bottom:18px}
-.brand{font-stretch:125%;font-weight:800;font-style:italic;font-size:22px;text-decoration:none;letter-spacing:.02em}
-.brand b{color:var(--cy)}
-nav a{margin-left:26px;text-decoration:none;color:var(--dim);font-weight:500}
-nav a:hover{color:#fff}
-/* hero */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:120px 0 80px}
-.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 78% 40%,rgba(30,107,255,.38),transparent 70%),linear-gradient(#000,#000)}
-.slash{position:absolute;right:8%;top:-10%;width:22vw;height:130%;background:linear-gradient(180deg,#22b8ff,#1e6bff 60%,#0a2a8a);transform:skewX(-28deg);opacity:.9;box-shadow:0 0 120px rgba(34,184,255,.55)}
-.slash.two{right:34%;width:3px;opacity:.7;box-shadow:0 0 30px var(--cy);background:var(--cy)}
-.hero .wrap{position:relative}
-h1{font-stretch:125%;font-weight:800;font-style:italic;font-size:clamp(40px,8vw,104px);line-height:.98;margin:0 0 28px;letter-spacing:-.015em;max-width:9.5em}
-.hero p{max-width:30em;font-size:20px;color:#c3ccda;margin:0 0 36px}
-.btn{display:inline-block;font-weight:700;font-style:italic;font-stretch:110%;color:#fff;text-decoration:none;padding:16px 38px;background:linear-gradient(90deg,var(--blue),var(--cy));clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%);transition:filter .2s,transform .2s}
-.btn:hover{filter:brightness(1.2) drop-shadow(0 0 14px var(--cy));transform:translateX(4px)}
-.btn.ghost{background:none;box-shadow:inset 0 0 0 1px #fff;margin-left:12px;clip-path:none;border:1px solid #6b7686}
+.it{font-style:italic;font-stretch:118%}
+/* header */
+.header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+.nav{max-width:1200px;margin:0 auto;padding:8px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav img{height:46px;mix-blend-mode:screen;display:block}
+.links{display:flex;gap:28px;align-items:center}
+.links a{text-decoration:none;color:var(--dim);font-weight:500;font-size:15px}
+.links a:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font:inherit;font-weight:700;font-style:italic;font-stretch:110%;color:#fff;text-decoration:none;padding:13px 30px;background:var(--blu);clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);transition:filter .2s,transform .2s}
+.btn:hover{filter:brightness(1.2) drop-shadow(0 0 12px var(--cy));transform:translateX(3px)}
+.btn.sm{padding:10px 22px;font-size:14px}
+.btn.ghost{background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.5)}
+/* hero with real photo */
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;padding:80px 24px 100px;
+ background:linear-gradient(105deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.85) 100%),radial-gradient(60% 70% at 80% 40%,rgba(30,107,255,.4),transparent 70%),url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=2000&q=75") center/cover no-repeat,#030a1c}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(34,184,255,.22) 1px,transparent 1px);background-size:40px 40px;-webkit-mask-image:radial-gradient(80% 80% at 50% 50%,#000,transparent);mask-image:radial-gradient(80% 80% at 50% 50%,#000,transparent)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:140px;background:linear-gradient(transparent,#000)}
+.split{position:relative;z-index:1;max-width:1200px;width:100%;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--cy);border:1px solid var(--line);padding:7px 16px;background:rgba(30,107,255,.1);margin-bottom:22px}
+.badge i{width:7px;height:7px;border-radius:50%;background:var(--cy);box-shadow:0 0 10px var(--cy);animation:p 2s infinite}
+@keyframes p{50%{opacity:.3}}
+h1{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.1;letter-spacing:-.01em;margin-bottom:16px;max-width:15em}
+.hero p.lead{color:#c3ccda;font-size:18px;max-width:31em;margin-bottom:28px}
+.stats{display:flex;width:fit-content;max-width:100%;border:1px solid var(--line);background:rgba(0,0,0,.45);backdrop-filter:blur(10px);margin-bottom:28px}
+.stat{padding:14px 26px;text-align:center}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat b{display:block;font-size:24px;font-weight:800;line-height:1.1}
+.stat span{font-size:12px;color:var(--dim)}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-logo{width:100%;max-width:470px;justify-self:end;mix-blend-mode:screen;filter:drop-shadow(0 0 40px rgba(30,107,255,.6))}
+/* why */
+.why{padding:90px 24px 20px;text-align:center}
+.why h2,.build h2{font-size:clamp(26px,3.6vw,42px);font-weight:800;line-height:1.1;margin-bottom:14px}
+.why p{max-width:42em;margin:0 auto;color:var(--dim);font-size:17px}
 /* services */
-section{scroll-margin-top:30px}
-.svc{padding:110px 0 60px}
-h2{font-stretch:118%;font-weight:800;font-style:italic;font-size:clamp(30px,5vw,56px);line-height:1.05;margin:0 0 14px}
-.sub{color:var(--dim);margin:0 0 54px;max-width:34em}
-.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
-.card{grid-column:span 2;position:relative;display:flex;flex-direction:column;text-align:left;font:inherit;color:inherit;cursor:pointer;padding:0;background:#05070c;border:1px solid #1c2433;overflow:hidden;
-  clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,28px 100%,0 calc(100% - 28px));transition:transform .3s,border-color .3s,background .3s}
-.card.wide{grid-column:span 3}
-.card .img{height:190px;background:linear-gradient(135deg,#0a1a44,#000) center/cover;position:relative;filter:grayscale(.75) contrast(1.1);transition:filter .4s}
-.card .img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,#05070c),linear-gradient(120deg,rgba(30,107,255,.35),transparent 60%)}
-.card .body{padding:22px 26px 28px;flex:1}
-.card h3{margin:0 0 8px;font-stretch:112%;font-weight:700;font-style:italic;font-size:21px;line-height:1.2}
-.card p{margin:0;color:var(--dim);font-size:16px}
-.card .tag{display:none;margin-top:14px;font-weight:700;color:#fff}
-.card:hover{transform:translateY(-6px)}
-.card:hover .img,.card.on .img{filter:none}
-.card:hover{border-color:var(--cy)}
-.card.on{background:linear-gradient(160deg,#0b3bb8,#05153f);border-color:var(--cy)}
-.card.on p{color:#dbe7ff}
-.card.on .tag{display:block}
-/* approach */
-.how{padding:90px 0}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid #243045}
-.step{padding:30px 28px 10px 0}
-.step h3{font-stretch:112%;font-style:italic;font-weight:700;font-size:22px;margin:0 0 8px;color:var(--cy)}
-.step p{margin:0;color:var(--dim)}
-.step+.step{padding-left:28px;border-left:1px solid #243045}
+.build{padding:70px 24px 90px;max-width:1248px;margin:0 auto}
+.build h2{text-align:center;margin-bottom:46px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px}
+.card{display:flex;flex-direction:column;background:#05070d;border:1px solid #182034;overflow:hidden;clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,26px 100%,0 calc(100% - 26px));transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);border-color:var(--cy)}
+.img{height:200px;position:relative;background:linear-gradient(135deg,#0a1a44,#000) center/cover;filter:grayscale(.6) contrast(1.1);transition:filter .4s}
+.card:hover .img{filter:none}
+.img::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,#05070d),linear-gradient(120deg,rgba(30,107,255,.35),transparent 60%)}
+.body{padding:20px 24px 26px;display:flex;flex-direction:column;flex:1;gap:8px}
+.body h3{font-size:20px;font-weight:700;line-height:1.2;font-stretch:110%;font-style:italic}
+.body p{color:var(--dim);font-size:15px;flex:1}
+.body .btn{margin-top:12px;align-self:flex-start}
 /* contact */
-.contact{padding:110px 0 70px;position:relative;overflow:hidden}
-.contact::before{content:"";position:absolute;left:-10%;right:-10%;top:0;bottom:0;background:radial-gradient(50% 70% at 20% 100%,rgba(30,107,255,.35),transparent 70%)}
-.contact .wrap{position:relative}
-.contact p{color:#c3ccda;max-width:30em;margin:0 0 32px}
-.contact img{width:min(420px,80%);display:block;margin:60px 0 0 -10px;mix-blend-mode:screen}
-footer{padding:26px 0 40px;color:var(--dim);font-size:14px;border-top:1px solid #151c29}
-@media(max-width:860px){.grid{grid-template-columns:1fr}.card,.card.wide{grid-column:auto}.steps{grid-template-columns:1fr}.step+.step{padding-left:0;border-left:0;border-top:1px solid #243045;margin-top:16px}.slash{right:-6%;width:30vw;opacity:.55}.slash.two{display:none}nav a{margin-left:16px}.btn.ghost{margin:14px 0 0}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.contact{position:relative;padding:90px 24px;text-align:center;border-top:1px solid var(--line);background:radial-gradient(50% 90% at 50% 120%,rgba(30,107,255,.4),transparent 70%)}
+.contact h2{font-size:clamp(26px,3.6vw,40px);font-weight:800;margin-bottom:12px}
+.contact p{color:var(--dim);max-width:30em;margin:0 auto 28px}
+footer{padding:24px;text-align:center;color:var(--dim);font-size:14px;border-top:1px solid #121a2a}
+/* modal */
+.modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.box{position:relative;width:100%;max-width:440px;max-height:90vh;overflow:auto;background:#05070d;border:1px solid var(--cy);box-shadow:0 0 60px rgba(34,184,255,.3);padding:30px 26px;text-align:center}
+.box h3{font-size:24px;font-weight:800;margin-bottom:4px}
+.box>p{color:var(--dim);font-size:14px;margin-bottom:20px}
+.opt{display:block;width:100%;margin-bottom:10px;padding:13px 16px;font:inherit;font-weight:600;color:#fff;background:rgba(30,107,255,.1);border:1px solid #1c2a4a;cursor:pointer;transition:background .2s,border-color .2s}
+.opt:hover{background:rgba(30,107,255,.35);border-color:var(--cy)}
+.x{position:absolute;top:8px;right:14px;background:none;border:0;color:var(--dim);font-size:28px;cursor:pointer}
+@media(max-width:860px){.split{grid-template-columns:1fr}.hero-logo{display:none}.links a{display:none}.stat{padding:12px 16px}.hero{padding-top:60px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><a class="brand chrome" href="#">DLX <b style="-webkit-text-fill-color:#22b8ff">ACE</b> TEC</a><nav><a href="#services">Services</a><a href="#how">How we work</a><a href="#contact">Contact</a></nav></div></header>
+<header class="header"><div class="nav">
+  <a href="#top"><img src="logo.jpg" alt="DLX Ace Tec"></a>
+  <div class="links"><a href="#build">Services</a><a href="#contact">Contact</a><button class="btn sm" data-start>Get started</button></div>
+</div></header>
 
-<section class="hero">
-  <div class="slash"></div><div class="slash two"></div>
-  <div class="wrap">
-    <h1 class="chrome">Software, data and visuals. One team.</h1>
-    <p>We build the software, feed it the data, run the ads, film the buildings and help you find the funding to make it happen.</p>
-    <a class="btn" href="#services">See our services</a><a class="btn ghost" href="#contact">Start a project</a>
-  </div>
-</section>
-
-<section id="services" class="svc">
-  <div class="wrap">
-    <h2 class="chrome">What we do</h2>
-    <p class="sub">Select a service and the email button below will be set up for that enquiry.</p>
-    <div class="grid">
-      <button class="card" data-s="Software building and design"><div class="img" data-i="photo-1555066931-4365d14bab8c"></div><div class="body"><h3>Software building and design</h3><p>Websites, apps and business tools, designed and built from first sketch to launch.</p><span class="tag">Selected. Email us below.</span></div></button>
-      <button class="card" data-s="Data scraping and pipelines"><div class="img" data-i="photo-1551288049-bebda4e38f71"></div><div class="body"><h3>Data scraping and pipelines</h3><p>We collect data from the web and turn it into clean, organised feeds your business can use.</p><span class="tag">Selected. Email us below.</span></div></button>
-      <button class="card" data-s="Ads management"><div class="img" data-i="photo-1460925895917-afdab827c52f"></div><div class="body"><h3>Ads management</h3><p>We set up, run and improve your online ad campaigns.</p><span class="tag">Selected. Email us below.</span></div></button>
-      <button class="card wide" data-s="Photo, video and drone production"><div class="img" data-i="photo-1473968512647-3e447244af8f"></div><div class="body"><h3>Photo, video and drone production</h3><p>Professional photos, video and aerial footage for tourism and real estate.</p><span class="tag">Selected. Email us below.</span></div></button>
-      <button class="card wide" data-s="Cinematic 3D walkthroughs"><div class="img" data-i="photo-1486406146926-c627a92ad1ab"></div><div class="body"><h3>Cinematic 3D walkthroughs</h3><p>Animated tours through a building, whether it has been built yet or not.</p><span class="tag">Selected. Email us below.</span></div></button>
-      <button class="card wide" data-s="Software ideas, developed and pitched"><div class="img" data-i="photo-1556761175-5973dc0f32e7"></div><div class="body"><h3>Software ideas, developed and pitched</h3><p>We create large software ideas and pitch them to buyers who can pay for the idea and the software outright.</p><span class="tag">Selected. Email us below.</span></div></button>
-      <button class="card wide" data-s="Grant writing and business funding"><div class="img" data-i="photo-1450101499163-c8848c66ca85"></div><div class="body"><h3>Grant writing and business funding</h3><p>We write grant applications and help you find and apply for business funding.</p><span class="tag">Selected. Email us below.</span></div></button>
+<section class="hero" id="top"><div class="split">
+  <div>
+    <div class="badge"><i></i>Software, media and funding studio</div>
+    <h1 class="chrome it">Software, data and visuals, built under one roof.</h1>
+    <p class="lead">We build software, collect and organise data, run your ads, film and animate buildings, and help you find the funding to grow.</p>
+    <div class="stats">
+      <div class="stat"><b class="chrome">7</b><span>Services</span></div>
+      <div class="stat"><b class="chrome">1</b><span>Team</span></div>
+      <div class="stat"><b class="chrome">Idea to launch</b><span>Start to finish</span></div>
     </div>
+    <div class="cta"><button class="btn" data-start>Get started</button><a class="btn ghost" href="#build">See what we build</a></div>
+  </div>
+  <img class="hero-logo" src="logo.jpg" alt="DLX Ace Tec, dlxacetec.com">
+</div></section>
+
+<section class="why">
+  <h2 class="chrome it">Everything your project needs, in one place.</h2>
+  <p>From the first sketch of an app to the drone shot that sells a property, and the grant that pays for it, you work with one team instead of five.</p>
+</section>
+
+<section class="build" id="build">
+  <h2 class="chrome it">What we build</h2>
+  <div class="grid">
+    <div class="card"><div class="img" data-i="photo-1555066931-4365d14bab8c"></div><div class="body"><h3>Software building and design</h3><p>Websites, apps and business tools, designed and built from first sketch to launch.</p><button class="btn sm" data-s="Software building and design">Request this</button></div></div>
+    <div class="card"><div class="img" data-i="photo-1551288049-bebda4e38f71"></div><div class="body"><h3>Data scraping and pipelines</h3><p>We collect data from the web and turn it into clean, organised feeds your business can use.</p><button class="btn sm" data-s="Data scraping and pipelines">Request this</button></div></div>
+    <div class="card"><div class="img" data-i="photo-1460925895917-afdab827c52f"></div><div class="body"><h3>Ads management</h3><p>We set up, run and improve your online ad campaigns.</p><button class="btn sm" data-s="Ads management">Request this</button></div></div>
+    <div class="card"><div class="img" data-i="photo-1473968512647-3e447244af8f"></div><div class="body"><h3>Photo, video and drone production</h3><p>Professional photos, video and aerial footage for tourism and real estate.</p><button class="btn sm" data-s="Photo, video and drone production">Request this</button></div></div>
+    <div class="card"><div class="img" data-i="photo-1486406146926-c627a92ad1ab"></div><div class="body"><h3>Cinematic 3D walkthroughs</h3><p>Animated tours through a building, whether it has been built yet or not.</p><button class="btn sm" data-s="Cinematic 3D walkthroughs">Request this</button></div></div>
+    <div class="card"><div class="img" data-i="photo-1556761175-5973dc0f32e7"></div><div class="body"><h3>Software ideas, developed and pitched</h3><p>We create large software ideas and pitch them to buyers who can pay for the idea and the software outright.</p><button class="btn sm" data-s="Software ideas, developed and pitched">Request this</button></div></div>
+    <div class="card"><div class="img" data-i="photo-1450101499163-c8848c66ca85"></div><div class="body"><h3>Grant writing and business funding</h3><p>We write grant applications and help you find and apply for business funding.</p><button class="btn sm" data-s="Grant writing and business funding">Request this</button></div></div>
   </div>
 </section>
 
-<section id="how" class="how">
-  <div class="wrap">
-    <h2 class="chrome">How we work</h2>
-    <p class="sub">A short path from your idea to something live.</p>
-    <div class="steps">
-      <div class="step"><h3>Tell us the goal</h3><p>Send a few lines about what you need. We reply with what we would do and what it takes.</p></div>
-      <div class="step"><h3>We build it</h3><p>Design, code, data, footage or ads. You see progress as it happens, not only at the end.</p></div>
-      <div class="step"><h3>Launch and improve</h3><p>We put it in front of your customers, then measure it and keep making it better.</p></div>
-    </div>
-  </div>
+<section class="contact" id="contact">
+  <h2 class="chrome it">Have a project or an idea?</h2>
+  <p>Tell us what you need and we’ll reply with how we can help.</p>
+  <button class="btn" data-start>Get started</button>
 </section>
+<footer>© 2026 DLX Ace Tec · dlxacetec.com</footer>
 
-<section id="contact" class="contact">
-  <div class="wrap">
-    <h2 class="chrome">Have a project or an idea?</h2>
-    <p id="cmsg">Tell us what you need and we’ll reply with how we can help.</p>
-    <a class="btn" id="mail" href="mailto:YOUR_EMAIL@example.com">Email us</a>
-    <img src="logo.jpg" alt="DLX Ace Tec, dlxacetec.com">
-  </div>
-</section>
-<footer><div class="wrap">© 2026 DLX Ace Tec · dlxacetec.com</div></footer>
+<div class="modal" id="m"><div class="box" role="dialog" aria-modal="true" aria-labelledby="mt">
+  <button class="x" id="mx" aria-label="Close">&times;</button>
+  <h3 class="chrome it" id="mt">Get started</h3><p>What would you like to request?</p>
+  <div id="opts"></div>
+</div></div>
 
 <script>
 const EMAIL="YOUR_EMAIL@example.com";
-// Unsplash photos: if one fails to load, the card keeps its blue gradient
+const S=[...document.querySelectorAll("[data-s]")].map(b=>b.dataset.s);
+const m=document.getElementById("m"),opts=document.getElementById("opts");
+const send=s=>{location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("Enquiry: "+s)};
+S.forEach(s=>{const b=document.createElement("button");b.className="opt";b.textContent=s;b.onclick=()=>{m.classList.remove("open");send(s)};opts.appendChild(b)});
+document.querySelectorAll("[data-start]").forEach(b=>b.onclick=()=>m.classList.add("open"));
+document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>send(b.dataset.s));
+document.getElementById("mx").onclick=()=>m.classList.remove("open");
+m.addEventListener("click",e=>{if(e.target===m)m.classList.remove("open")});
+addEventListener("keydown",e=>{if(e.key==="Escape")m.classList.remove("open")});
+// Unsplash photos: if one fails, the card keeps its blue gradient
 document.querySelectorAll(".img").forEach(d=>{
   const u="https://images.unsplash.com/"+d.dataset.i+"?auto=format&fit=crop&w=900&q=70",i=new Image();
   i.onload=()=>d.style.backgroundImage="url("+u+")";i.src=u;
 });
-const cards=document.querySelectorAll(".card"),mail=document.getElementById("mail"),cmsg=document.getElementById("cmsg");
-cards.forEach(c=>c.addEventListener("click",()=>{
-  const was=c.classList.contains("on");
-  cards.forEach(k=>k.classList.remove("on"));
-  if(was){mail.href="mailto:"+EMAIL;cmsg.textContent="Tell us what you need and we’ll reply with how we can help.";return}
-  c.classList.add("on");
-  mail.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("Enquiry: "+c.dataset.s);
-  cmsg.textContent="You selected “"+c.dataset.s+"”. Email us and we’ll get back to you.";
-}));
 </script>
 
 <script type="module">
