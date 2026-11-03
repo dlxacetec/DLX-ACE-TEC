@@ -69,9 +69,17 @@ h1{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.1;letter-spacing
 .contact p{color:var(--dim);max-width:30em;margin:0 auto 28px}
 footer{padding:24px;text-align:center;color:var(--dim);font-size:14px;border-top:1px solid #121a2a}
 /* modal */
+.box label{display:block;text-align:left;font-size:13px;color:var(--dim);margin-bottom:12px}
+.box input,.box select,.box textarea{display:block;width:100%;margin-top:5px;padding:11px 12px;font:inherit;font-size:15px;color:#fff;background:#0a0f1c;border:1px solid #1c2a4a;border-radius:0}
+.box textarea{resize:vertical}
+.box input:focus,.box select:focus,.box textarea:focus{outline:0;border-color:var(--cy);box-shadow:0 0 0 3px rgba(34,184,255,.18)}
+.box .btn{width:100%;margin-top:6px}.box .btn:disabled{opacity:.6;cursor:wait}
+.err{color:#ff7b7b;font-size:14px;min-height:1px;margin:4px 0 8px;text-align:left}
+.box #done{padding:20px 0}
+
 .modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px}
 .modal.open{display:flex}
-.box{position:relative;width:100%;max-width:440px;max-height:90vh;overflow:auto;background:#05070d;border:1px solid var(--cy);box-shadow:0 0 60px rgba(34,184,255,.3);padding:30px 26px;text-align:center}
+.box{position:relative;width:100%;max-width:480px;max-height:90vh;overflow:auto;background:#05070d;border:1px solid var(--cy);box-shadow:0 0 60px rgba(34,184,255,.3);padding:30px 26px;text-align:center}
 .box h3{font-size:24px;font-weight:800;margin-bottom:4px}
 .box>p{color:var(--dim);font-size:14px;margin-bottom:20px}
 .opt{display:block;width:100%;margin-bottom:10px;padding:13px 16px;font:inherit;font-weight:600;color:#fff;background:rgba(30,107,255,.1);border:1px solid #1c2a4a;cursor:pointer;transition:background .2s,border-color .2s}
@@ -83,8 +91,8 @@ footer{padding:24px;text-align:center;color:var(--dim);font-size:14px;border-top
 </head>
 <body>
 <header class="header"><div class="nav">
-  <a href="#top"><img src="logo.jpg" alt="DLX Ace Tec"></a>
-  <div class="links"><a href="#build">Services</a><a href="#contact">Contact</a><button class="btn sm" data-start>Get started</button></div>
+  <a href="#top"><img src="DLX%20ACE%20TECH%20LOGO.png" alt="DLX Ace Tec"></a>
+  <div class="links"><a href="#build">Services</a><button class="btn sm" data-start>Get started</button></div>
 </div></header>
 
 <section class="hero" id="top"><div class="split">
@@ -92,14 +100,9 @@ footer{padding:24px;text-align:center;color:var(--dim);font-size:14px;border-top
     <div class="badge"><i></i>Software, media and funding studio</div>
     <h1 class="chrome it">Software, data and visuals, built under one roof.</h1>
     <p class="lead">We build software, collect and organise data, run your ads, film and animate buildings, and help you find the funding to grow.</p>
-    <div class="stats">
-      <div class="stat"><b class="chrome">7</b><span>Services</span></div>
-      <div class="stat"><b class="chrome">1</b><span>Team</span></div>
-      <div class="stat"><b class="chrome">Idea to launch</b><span>Start to finish</span></div>
-    </div>
     <div class="cta"><button class="btn" data-start>Get started</button><a class="btn ghost" href="#build">See what we build</a></div>
   </div>
-  <img class="hero-logo" src="logo.jpg" alt="DLX Ace Tec, dlxacetec.com">
+  <img class="hero-logo" src="DLX%20ACE%20TECH%20LOGO.png" alt="DLX Ace Tec, dlxacetec.com">
 </div></section>
 
 <section class="why">
@@ -120,30 +123,38 @@ footer{padding:24px;text-align:center;color:var(--dim);font-size:14px;border-top
   </div>
 </section>
 
-<section class="contact" id="contact">
-  <h2 class="chrome it">Have a project or an idea?</h2>
-  <p>Tell us what you need and we’ll reply with how we can help.</p>
-  <button class="btn" data-start>Get started</button>
-</section>
 <footer>© 2026 DLX Ace Tec · dlxacetec.com</footer>
 
 <div class="modal" id="m"><div class="box" role="dialog" aria-modal="true" aria-labelledby="mt">
   <button class="x" id="mx" aria-label="Close">&times;</button>
-  <h3 class="chrome it" id="mt">Get started</h3><p>What would you like to request?</p>
-  <div id="opts"></div>
+  <div id="formWrap">
+    <h3 class="chrome it" id="mt">Request a service</h3><p>Tell us about your project and we’ll reply by email.</p>
+    <form id="f" novalidate>
+      <label>Service<select name="service" required></select></label>
+      <label>Your name<input name="name" required maxlength="100" autocomplete="name"></label>
+      <label>Email<input name="email" type="email" required maxlength="150" autocomplete="email"></label>
+      <label>Phone or WhatsApp (optional)<input name="phone" maxlength="40" autocomplete="tel"></label>
+      <label>Budget (optional)<select name="budget"><option value="">Not sure yet</option><option>Under $500</option><option>$500 – $2,000</option><option>$2,000 – $10,000</option><option>$10,000+</option></select></label>
+      <label>About your project<textarea name="details" required maxlength="3000" rows="5" placeholder="What do you want to build or achieve, and by when?"></textarea></label>
+      <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn" id="send" type="submit">Send request</button>
+    </form>
+  </div>
+  <div id="done" style="display:none"><h3 class="chrome it">Request sent</h3><p>Thank you. We’ll be in touch by email soon.</p><button class="btn sm" id="close2">Close</button></div>
 </div></div>
 
 <script>
-const EMAIL="YOUR_EMAIL@example.com";
-const S=[...document.querySelectorAll("[data-s]")].map(b=>b.dataset.s);
-const m=document.getElementById("m"),opts=document.getElementById("opts");
-const send=s=>{location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("Enquiry: "+s)};
-S.forEach(s=>{const b=document.createElement("button");b.className="opt";b.textContent=s;b.onclick=()=>{m.classList.remove("open");send(s)};opts.appendChild(b)});
-document.querySelectorAll("[data-start]").forEach(b=>b.onclick=()=>m.classList.add("open"));
-document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>send(b.dataset.s));
-document.getElementById("mx").onclick=()=>m.classList.remove("open");
-m.addEventListener("click",e=>{if(e.target===m)m.classList.remove("open")});
-addEventListener("keydown",e=>{if(e.key==="Escape")m.classList.remove("open")});
+const m=document.getElementById("m"),f=document.getElementById("f");
+const sel=f.service;
+sel.innerHTML='<option value="">Choose a service</option>'+[...document.querySelectorAll("[data-s]")].map(b=>"<option>"+b.dataset.s+"</option>").join("");
+function openForm(v){document.getElementById("formWrap").style.display="";document.getElementById("done").style.display="none";document.getElementById("err").textContent="";sel.value=v||"";m.classList.add("open");setTimeout(()=>f.name.focus(),50)}
+function closeForm(){m.classList.remove("open")}
+document.querySelectorAll("[data-start]").forEach(b=>b.onclick=()=>openForm());
+document.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>openForm(b.dataset.s));
+document.getElementById("mx").onclick=closeForm;document.getElementById("close2").onclick=closeForm;
+m.addEventListener("click",e=>{if(e.target===m)closeForm()});
+addEventListener("keydown",e=>{if(e.key==="Escape")closeForm()});
 // Unsplash photos: if one fails, the card keeps its blue gradient
 document.querySelectorAll(".img").forEach(d=>{
   const u="https://images.unsplash.com/"+d.dataset.i+"?auto=format&fit=crop&w=900&q=70",i=new Image();
@@ -153,15 +164,39 @@ document.querySelectorAll(".img").forEach(d=>{
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
   const firebaseConfig = {
-    apiKey: "AIzaSyBaIvHR5X-J2SU1tFVtHLfS5sMaq_qA8qc",
-    authDomain: "dlx-ace-tec.firebaseapp.com",
-    projectId: "dlx-ace-tec",
-    storageBucket: "dlx-ace-tec.firebasestorage.app",
-    messagingSenderId: "837761942916",
-    appId: "1:837761942916:web:034b900944d15abb0149d1"
+    apiKey: "AIzaSyDkOyxeT_g-w3Xv3xFo4hwuoPeLQzuZ-l4",
+    authDomain: "dlx-acetec.firebaseapp.com",
+    projectId: "dlx-acetec",
+    storageBucket: "dlx-acetec.firebasestorage.app",
+    messagingSenderId: "87096426331",
+    appId: "1:87096426331:web:d88f3b6f07fdfee769a47e"
   };
-  try { initializeApp(firebaseConfig); } catch (err) { console.error("Firebase setup failed:", err); }
+  const db = getFirestore(initializeApp(firebaseConfig));
+  const err = document.getElementById("err"), btn = document.getElementById("send");
+  f.addEventListener("submit", async e => {
+    e.preventDefault();
+    if (f.website.value) return; // spam trap
+    const v = k => f[k].value.trim();
+    if (!v("service") || !v("name") || !/^\S+@\S+\.\S+$/.test(v("email")) || !v("details")) {
+      err.textContent = "Please choose a service and fill in your name, a valid email and your project details."; return;
+    }
+    err.textContent = ""; btn.disabled = true; btn.textContent = "Sending…";
+    try {
+      await addDoc(collection(db, "requests"), {
+        service: v("service"), name: v("name"), email: v("email"), phone: v("phone"),
+        budget: v("budget"), details: v("details"), status: "new", createdAt: serverTimestamp()
+      });
+      f.reset();
+      document.getElementById("formWrap").style.display = "none";
+      document.getElementById("done").style.display = "";
+    } catch (x) {
+      console.error(x);
+      err.textContent = "Something went wrong and your request was not sent. Please try again.";
+    }
+    btn.disabled = false; btn.textContent = "Send request";
+  });
 </script>
 </body>
 </html>

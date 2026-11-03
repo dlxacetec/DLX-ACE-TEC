@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin – DLX Ace Tec</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..800;1,62..125,400..800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1e6bff;--cy:#22b8ff;--blu:linear-gradient(100deg,#1e6bff,#22b8ff);--ink:#eef2f8;--dim:#98a4b6;--line:#162036;--panel:#070b14}
+*{box-sizing:border-box;margin:0}
+body{background:#000;color:var(--ink);font-family:Archivo,system-ui,sans-serif;font-size:15px;line-height:1.5;min-height:100vh}
+:focus-visible{outline:2px solid var(--cy);outline-offset:2px}
+.chrome{background:linear-gradient(180deg,#fff,#aab3c1 55%,#e6eaf0);-webkit-background-clip:text;background-clip:text;color:transparent}
+button,select,input{font:inherit}
+.btn{border:0;cursor:pointer;font-weight:700;color:#fff;background:var(--blu);padding:11px 24px;transition:filter .2s}
+.btn:hover{filter:brightness(1.2)}
+.btn.ghost{background:none;border:1px solid #2a3a5c;color:var(--ink);padding:8px 16px;font-weight:600}
+.btn.ghost:hover{border-color:var(--cy)}
+.btn.del{color:#ff8a8a;border-color:#4a2330}
+/* login */
+#login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(50% 50% at 50% 40%,rgba(30,107,255,.3),transparent 70%)}
+.lbox{width:100%;max-width:380px;text-align:center;padding:36px 28px;border:1px solid var(--line);background:var(--panel)}
+.lbox h1{font-size:26px;font-weight:800;font-style:italic;font-stretch:115%;margin-bottom:6px}
+.lbox p{color:var(--dim);margin-bottom:22px}
+#lerr{color:#ff8a8a;margin-top:14px;font-size:14px}
+/* app */
+#app{display:none}
+.top{position:sticky;top:0;z-index:5;background:rgba(0,0,0,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top div{max-width:1180px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.top b{font-size:19px;font-style:italic;font-stretch:118%;font-weight:800}
+.top span{color:var(--dim);font-size:13px;margin-right:12px}
+main{max-width:1180px;margin:0 auto;padding:28px 24px 60px}
+.counts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px}
+.count{padding:16px 18px;border:1px solid var(--line);background:var(--panel);border-top:2px solid #26385c}
+.count.new{border-top-color:var(--cy)}
+.count b{display:block;font-size:28px;font-weight:800;line-height:1.1}
+.count span{color:var(--dim);font-size:13px}
+.bar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.bar input{flex:1;min-width:200px;padding:10px 14px;color:#fff;background:var(--panel);border:1px solid var(--line)}
+.bar input:focus{outline:0;border-color:var(--cy)}
+.tabs{display:flex;gap:6px}
+.tab{padding:9px 16px;background:none;color:var(--dim);border:1px solid var(--line);cursor:pointer}
+.tab.on{color:#fff;border-color:var(--cy);background:rgba(30,107,255,.18)}
+.list{border:1px solid var(--line);background:var(--panel)}
+.row{display:grid;grid-template-columns:1.2fr 1.5fr 130px 110px;gap:14px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .15s}
+.row:last-child{border-bottom:0}
+.row:hover{background:rgba(30,107,255,.08)}
+.row.head{cursor:default;color:var(--dim);font-size:13px;background:#04070d}
+.row.head:hover{background:#04070d}
+.row .n{font-weight:600}.row small{display:block;color:var(--dim);font-size:13px;font-weight:400}
+.pill{display:inline-block;padding:3px 12px;font-size:12px;font-weight:600;border:1px solid}
+.pill.new{color:var(--cy);border-color:var(--cy);background:rgba(34,184,255,.1)}
+.pill.progress{color:#ffc857;border-color:#6b5420;background:rgba(255,200,87,.08)}
+.pill.done{color:#5be3a0;border-color:#1f5a40;background:rgba(91,227,160,.08)}
+.empty{padding:44px 18px;text-align:center;color:var(--dim)}
+/* drawer */
+#veil{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:20}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(480px,100%);background:var(--panel);border-left:1px solid var(--cy);z-index:21;transform:translateX(100%);transition:transform .25s;overflow:auto;padding:26px}
+#drawer.open{transform:none}#veil.open{display:block}
+#drawer h2{font-size:22px;font-weight:800;margin-bottom:2px;padding-right:40px}
+.close{position:absolute;top:14px;right:18px;background:none;border:0;color:var(--dim);font-size:28px;cursor:pointer}
+.k{color:var(--dim);font-size:13px;margin:18px 0 4px}
+.v{white-space:pre-wrap;word-break:break-word}
+.v a{color:var(--cy)}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px;align-items:center}
+#drawer select{padding:9px 12px;color:#fff;background:#0a0f1c;border:1px solid #2a3a5c}
+@media(max-width:760px){.counts{grid-template-columns:repeat(2,1fr)}.row{grid-template-columns:1fr 100px}.row>:nth-child(2),.row>:nth-child(4){display:none}.row.head{display:none}.top span{display:none}}
+</style>
+</head>
+<body>
+<div id="login"><div class="lbox">
+  <h1 class="chrome">DLX Ace Tec</h1><p>Admin sign in</p>
+  <button class="btn" id="gbtn">Sign in with Google</button>
+  <div id="lerr" role="alert"></div>
+</div></div>
+
+<div id="app">
+  <div class="top"><div><b class="chrome">DLX Ace Tec · Requests</b><p><span id="who"></span><button class="btn ghost" id="out">Sign out</button></p></div></div>
+  <main>
+    <div class="counts">
+      <div class="count new"><b id="cNew">0</b><span>New</span></div>
+      <div class="count"><b id="cProg">0</b><span>In progress</span></div>
+      <div class="count"><b id="cDone">0</b><span>Done</span></div>
+      <div class="count"><b id="cAll">0</b><span>All requests</span></div>
+    </div>
+    <div class="bar">
+      <input id="q" type="search" placeholder="Search by name, email, service or details" aria-label="Search requests">
+      <div class="tabs" id="tabs">
+        <button class="tab on" data-f="all">All</button><button class="tab" data-f="new">New</button><button class="tab" data-f="progress">In progress</button><button class="tab" data-f="done">Done</button>
+      </div>
+    </div>
+    <div class="list" id="list"></div>
+  </main>
+</div>
+
+<div id="veil"></div>
+<aside id="drawer" aria-label="Request details"></aside>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
+import { getFirestore, collection, query, orderBy, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
+const app = initializeApp({
+  apiKey: "AIzaSyDkOyxeT_g-w3Xv3xFo4hwuoPeLQzuZ-l4",
+  authDomain: "dlx-acetec.firebaseapp.com",
+  projectId: "dlx-acetec",
+  storageBucket: "dlx-acetec.firebasestorage.app",
+  messagingSenderId: "87096426331",
+  appId: "1:87096426331:web:d88f3b6f07fdfee769a47e"
+});
+const auth = getAuth(app), db = getFirestore(app);
+const $ = id => document.getElementById(id);
+const LABEL = { new: "New", progress: "In progress", done: "Done" };
+let all = [], filter = "all", term = "", unsub = null, openId = null;
+
+$("gbtn").onclick = async () => {
+  $("lerr").textContent = "";
+  try { await signInWithPopup(auth, new GoogleAuthProvider()); }
+  catch (e) { $("lerr").textContent = "Sign in failed. " + (e.code || ""); }
+};
+$("out").onclick = () => signOut(auth);
+
+onAuthStateChanged(auth, user => {
+  if (unsub) { unsub(); unsub = null; }
+  if (!user) { $("app").style.display = "none"; $("login").style.display = "flex"; return; }
+  $("who").textContent = user.email;
+  unsub = onSnapshot(query(collection(db, "requests"), orderBy("createdAt", "desc")), snap => {
+    all = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    $("login").style.display = "none"; $("app").style.display = "block";
+    render();
+  }, err => {
+    console.error(err);
+    signOut(auth);
+    $("lerr").textContent = err.code === "permission-denied" ? "This account is not an admin." : "Could not load requests.";
+  });
+});
+
+const fmt = t => t && t.toDate ? t.toDate().toLocaleString([], { dateStyle: "medium", timeStyle: "short" }) : "Just now";
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+function render() {
+  const n = s => all.filter(r => r.status === s).length;
+  $("cNew").textContent = n("new"); $("cProg").textContent = n("progress"); $("cDone").textContent = n("done"); $("cAll").textContent = all.length;
+  const t = term.toLowerCase();
+  const rows = all.filter(r => (filter === "all" || r.status === filter) &&
+    (!t || [r.name, r.email, r.service, r.details, r.phone].join(" ").toLowerCase().includes(t)));
+  const list = $("list"); list.replaceChildren();
+  if (!rows.length) { list.append(el("div", "empty", all.length ? "No requests match your search." : "No requests yet. They will appear here as soon as someone submits the form.")); }
+  else {
+    const h = el("div", "row head"); ["Client", "Service", "Received", "Status"].forEach(x => h.append(el("span", "", x))); list.append(h);
+    rows.forEach(r => {
+      const row = el("div", "row"); row.tabIndex = 0;
+      const c = el("div", "n", r.name); c.append(el("small", "", r.email));
+      row.append(c, el("span", "", r.service), el("span", "", fmt(r.createdAt)), el("span", "pill " + r.status, LABEL[r.status] || r.status));
+      row.onclick = () => show(r.id); row.onkeydown = e => { if (e.key === "Enter") show(r.id); };
+      list.append(row);
+    });
+  }
+  if (openId) show(openId, true);
+}
+
+function show(id, quiet) {
+  const r = all.find(x => x.id === id); if (!r) return closeDrawer();
+  openId = id;
+  const d = $("drawer"); d.replaceChildren();
+  const x = el("button", "close", "×"); x.setAttribute("aria-label", "Close"); x.onclick = closeDrawer;
+  d.append(x, el("h2", "", r.name), el("span", "pill " + r.status, LABEL[r.status] || r.status));
+  const field = (k, v, link) => { d.append(el("div", "k", k)); const e = el("div", "v"); if (link && v) { const a = el("a", "", v); a.href = link + v; e.append(a); } else e.textContent = v || "Not given"; d.append(e); };
+  field("Service", r.service); field("Email", r.email, "mailto:"); field("Phone", r.phone, "tel:");
+  field("Budget", r.budget); field("Received", fmt(r.createdAt)); field("Project details", r.details);
+  const acts = el("div", "acts"), s = el("select");
+  Object.entries(LABEL).forEach(([k, v]) => { const o = el("option", "", v); o.value = k; s.append(o); }); s.value = r.status;
+  s.onchange = () => updateDoc(doc(db, "requests", id), { status: s.value });
+  const reply = el("a", "btn", "Reply by email"); reply.href = "mailto:" + r.email + "?subject=" + encodeURIComponent("Re: " + r.service); reply.style.textDecoration = "none";
+  const del = el("button", "btn ghost del", "Delete");
+  del.onclick = async () => { if (confirm("Delete this request permanently?")) { await deleteDoc(doc(db, "requests", id)); closeDrawer(); } };
+  acts.append(s, reply, del); d.append(acts);
+  d.classList.add("open"); $("veil").classList.add("open");
+}
+function closeDrawer() { openId = null; $("drawer").classList.remove("open"); $("veil").classList.remove("open"); }
+$("veil").onclick = closeDrawer;
+addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+$("q").oninput = e => { term = e.target.value; render(); };
+$("tabs").onclick = e => { const b = e.target.closest(".tab"); if (!b) return; filter = b.dataset.f; document.querySelectorAll(".tab").forEach(t => t.classList.toggle("on", t === b)); render(); };
+</script>
+</body>
+</html>
