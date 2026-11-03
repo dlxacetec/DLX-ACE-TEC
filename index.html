@@ -4,114 +4,132 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DLX Ace Tec – Software, data and visuals</title>
-<meta name="description" content="DLX Ace Tec designs software, builds data pipelines, manages ads, and produces photo, video, drone and 3D walkthrough content.">
+<meta name="description" content="DLX Ace Tec builds software, data pipelines and ad campaigns, produces photo, video, drone and 3D walkthrough content, and helps with grants and funding.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..800;1,62..125,400..800&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#f1f6ff;--dim:#9fb0c8}
+:root{--bk:#000;--blue:#1e6bff;--cy:#22b8ff;--ch:linear-gradient(180deg,#fff 0%,#c9d0da 38%,#7d8794 52%,#e6eaf0 70%,#9aa3b0 100%);--ink:#eef2f8;--dim:#98a3b5}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:#01040a;color:var(--ink);font-family:Archivo,system-ui,sans-serif;font-size:17px;line-height:1.55;overflow-x:hidden}
-/* background: black into deep blue, with slow drifting glows */
-.sky{position:fixed;inset:0;z-index:-3;background:linear-gradient(160deg,#000 0%,#030b1d 40%,#06173a 70%,#010309 100%)}
-.glow{position:fixed;z-index:-3;border-radius:50%;filter:blur(90px);opacity:.55;animation:drift 22s ease-in-out infinite alternate}
-.g1{width:55vmax;height:55vmax;left:-15vmax;top:-10vmax;background:#0a2c78}
-.g2{width:45vmax;height:45vmax;right:-12vmax;bottom:-12vmax;background:#0b1f5c;animation-duration:28s}
-.g3{width:30vmax;height:30vmax;left:35vw;top:30vh;background:#041238;animation-duration:34s}
-@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.15)}}
-#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-2;opacity:.7}
+body{margin:0;background:#000;color:var(--ink);font-family:Archivo,system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:hidden}
 a{color:inherit}
-:focus-visible{outline:2px solid #fff;outline-offset:3px}
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-header{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
-.brand{font-stretch:125%;font-weight:800;font-size:21px;text-decoration:none}
-.brand i{font-style:normal;color:#4cc9ff}
-nav a{margin-left:24px;text-decoration:none;color:var(--dim)}
+:focus-visible{outline:2px solid var(--cy);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.chrome{background:var(--ch);-webkit-background-clip:text;background-clip:text;color:transparent}
+header{position:fixed;top:0;left:0;right:0;z-index:10;background:linear-gradient(#000,rgba(0,0,0,.0))}
+header .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:18px;padding-bottom:18px}
+.brand{font-stretch:125%;font-weight:800;font-style:italic;font-size:22px;text-decoration:none;letter-spacing:.02em}
+.brand b{color:var(--cy)}
+nav a{margin-left:26px;text-decoration:none;color:var(--dim);font-weight:500}
 nav a:hover{color:#fff}
-.hero{min-height:72vh;display:flex;flex-direction:column;justify-content:center;padding:40px 0 60px}
-h1{font-stretch:120%;font-weight:800;font-size:clamp(38px,7.2vw,86px);line-height:1;margin:0 0 24px;max-width:10.5em;letter-spacing:-.01em}
-.hero p{max-width:31em;margin:0 0 32px;font-size:20px;color:var(--dim)}
-.btn{align-self:flex-start;display:inline-block;background:linear-gradient(90deg,#2f7bff,#4cc9ff);color:#00111f;font-weight:700;padding:14px 28px;border-radius:999px;text-decoration:none;box-shadow:0 0 30px rgba(76,201,255,.35);transition:transform .2s,box-shadow .2s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(76,201,255,.6)}
-h2{font-stretch:112%;font-weight:700;font-size:clamp(26px,4vw,40px);margin:0 0 8px}
-.sub{margin:0 0 36px;color:var(--dim)}
-/* floating service boxes */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;padding-bottom:20px}
-.float{animation:bob 6s ease-in-out infinite}
-.float:nth-child(2){animation-delay:-1s;animation-duration:7s}
-.float:nth-child(3){animation-delay:-2s;animation-duration:6.5s}
-.float:nth-child(4){animation-delay:-3s;animation-duration:7.5s}
-.float:nth-child(5){animation-delay:-4s}
-.float:nth-child(6){animation-delay:-5s;animation-duration:7s}
-@keyframes bob{50%{transform:translateY(-12px)}}
-.card{--c:#4cc9ff;display:flex;flex-direction:column;height:100%;min-height:200px;text-align:left;font:inherit;color:inherit;cursor:pointer;
-  padding:26px;border-radius:20px;border:1px solid color-mix(in srgb,var(--c) 55%,transparent);
-  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.02));backdrop-filter:blur(14px);
-  box-shadow:0 0 26px color-mix(in srgb,var(--c) 28%,transparent),0 18px 40px rgba(0,0,0,.45);
-  transition:transform .25s,box-shadow .25s,background .25s,border-color .25s}
-.card:hover{transform:translateY(-8px) scale(1.03);border-color:var(--c);
-  background:linear-gradient(145deg,color-mix(in srgb,var(--c) 26%,transparent),rgba(255,255,255,.03));
-  box-shadow:0 0 50px color-mix(in srgb,var(--c) 55%,transparent),0 24px 50px rgba(0,0,0,.5)}
-.card .dot{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:0 0 16px var(--c);margin-bottom:18px}
-.card h3{margin:0 0 8px;font-stretch:108%;font-weight:700;font-size:21px;line-height:1.25}
-.card p{margin:0;color:var(--dim)}
-.card .more{display:none;margin-top:16px;font-weight:700}
-.card.on{transform:translateY(-8px) scale(1.04);border-color:#fff;
-  background:linear-gradient(145deg,var(--c),color-mix(in srgb,var(--c) 40%,#000));
-  box-shadow:0 0 70px color-mix(in srgb,var(--c) 70%,transparent),0 24px 50px rgba(0,0,0,.5);color:#fff}
-.card.on p{color:rgba(255,255,255,.92)}
-.card.on .dot{background:#fff;box-shadow:0 0 18px #fff}
-.card.on .more{display:block}
-.contact{padding:80px 0 50px}
-.contact p{color:var(--dim);max-width:30em;margin:0 0 28px}
-footer{padding:24px 0 36px;color:var(--dim);font-size:14px}
-section{scroll-margin-top:20px}
-@media(max-width:760px){.cards{grid-template-columns:1fr}nav a{margin-left:16px}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:120px 0 80px}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 55% at 78% 40%,rgba(30,107,255,.38),transparent 70%),linear-gradient(#000,#000)}
+.slash{position:absolute;right:8%;top:-10%;width:22vw;height:130%;background:linear-gradient(180deg,#22b8ff,#1e6bff 60%,#0a2a8a);transform:skewX(-28deg);opacity:.9;box-shadow:0 0 120px rgba(34,184,255,.55)}
+.slash.two{right:34%;width:3px;opacity:.7;box-shadow:0 0 30px var(--cy);background:var(--cy)}
+.hero .wrap{position:relative}
+h1{font-stretch:125%;font-weight:800;font-style:italic;font-size:clamp(40px,8vw,104px);line-height:.98;margin:0 0 28px;letter-spacing:-.015em;max-width:9.5em}
+.hero p{max-width:30em;font-size:20px;color:#c3ccda;margin:0 0 36px}
+.btn{display:inline-block;font-weight:700;font-style:italic;font-stretch:110%;color:#fff;text-decoration:none;padding:16px 38px;background:linear-gradient(90deg,var(--blue),var(--cy));clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%);transition:filter .2s,transform .2s}
+.btn:hover{filter:brightness(1.2) drop-shadow(0 0 14px var(--cy));transform:translateX(4px)}
+.btn.ghost{background:none;box-shadow:inset 0 0 0 1px #fff;margin-left:12px;clip-path:none;border:1px solid #6b7686}
+/* services */
+section{scroll-margin-top:30px}
+.svc{padding:110px 0 60px}
+h2{font-stretch:118%;font-weight:800;font-style:italic;font-size:clamp(30px,5vw,56px);line-height:1.05;margin:0 0 14px}
+.sub{color:var(--dim);margin:0 0 54px;max-width:34em}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
+.card{grid-column:span 2;position:relative;display:flex;flex-direction:column;text-align:left;font:inherit;color:inherit;cursor:pointer;padding:0;background:#05070c;border:1px solid #1c2433;overflow:hidden;
+  clip-path:polygon(0 0,calc(100% - 28px) 0,100% 28px,100% 100%,28px 100%,0 calc(100% - 28px));transition:transform .3s,border-color .3s,background .3s}
+.card.wide{grid-column:span 3}
+.card .img{height:190px;background:linear-gradient(135deg,#0a1a44,#000) center/cover;position:relative;filter:grayscale(.75) contrast(1.1);transition:filter .4s}
+.card .img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,#05070c),linear-gradient(120deg,rgba(30,107,255,.35),transparent 60%)}
+.card .body{padding:22px 26px 28px;flex:1}
+.card h3{margin:0 0 8px;font-stretch:112%;font-weight:700;font-style:italic;font-size:21px;line-height:1.2}
+.card p{margin:0;color:var(--dim);font-size:16px}
+.card .tag{display:none;margin-top:14px;font-weight:700;color:#fff}
+.card:hover{transform:translateY(-6px)}
+.card:hover .img,.card.on .img{filter:none}
+.card:hover{border-color:var(--cy)}
+.card.on{background:linear-gradient(160deg,#0b3bb8,#05153f);border-color:var(--cy)}
+.card.on p{color:#dbe7ff}
+.card.on .tag{display:block}
+/* approach */
+.how{padding:90px 0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid #243045}
+.step{padding:30px 28px 10px 0}
+.step h3{font-stretch:112%;font-style:italic;font-weight:700;font-size:22px;margin:0 0 8px;color:var(--cy)}
+.step p{margin:0;color:var(--dim)}
+.step+.step{padding-left:28px;border-left:1px solid #243045}
+/* contact */
+.contact{padding:110px 0 70px;position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;left:-10%;right:-10%;top:0;bottom:0;background:radial-gradient(50% 70% at 20% 100%,rgba(30,107,255,.35),transparent 70%)}
+.contact .wrap{position:relative}
+.contact p{color:#c3ccda;max-width:30em;margin:0 0 32px}
+.contact img{width:min(420px,80%);display:block;margin:60px 0 0 -10px;mix-blend-mode:screen}
+footer{padding:26px 0 40px;color:var(--dim);font-size:14px;border-top:1px solid #151c29}
+@media(max-width:860px){.grid{grid-template-columns:1fr}.card,.card.wide{grid-column:auto}.steps{grid-template-columns:1fr}.step+.step{padding-left:0;border-left:0;border-top:1px solid #243045;margin-top:16px}.slash{right:-6%;width:30vw;opacity:.55}.slash.two{display:none}nav a{margin-left:16px}.btn.ghost{margin:14px 0 0}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<div class="sky"></div><div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
-<canvas id="bg" aria-hidden="true"></canvas>
+<header><div class="wrap"><a class="brand chrome" href="#">DLX <b style="-webkit-text-fill-color:#22b8ff">ACE</b> TEC</a><nav><a href="#services">Services</a><a href="#how">How we work</a><a href="#contact">Contact</a></nav></div></header>
 
-<div class="wrap">
-  <header>
-    <a class="brand" href="#">DLX <i>Ace</i> Tec</a>
-    <nav><a href="#services">Services</a><a href="#contact">Contact</a></nav>
-  </header>
+<section class="hero">
+  <div class="slash"></div><div class="slash two"></div>
+  <div class="wrap">
+    <h1 class="chrome">Software, data and visuals. One team.</h1>
+    <p>We build the software, feed it the data, run the ads, film the buildings and help you find the funding to make it happen.</p>
+    <a class="btn" href="#services">See our services</a><a class="btn ghost" href="#contact">Start a project</a>
+  </div>
+</section>
 
-  <section class="hero">
-    <h1>Software, data and visuals, built under one roof.</h1>
-    <p>We design software, collect and organise data, run your ads, and film and animate buildings so people want to visit, rent or buy.</p>
-    <a class="btn" href="#contact">Start a project</a>
-  </section>
-
-  <section id="services">
-    <h2>What we do</h2>
-    <p class="sub">Select a service to find out more.</p>
-    <div class="cards">
-      <div class="float"><button class="card" style="--c:#38bdf8" data-s="Software design and building"><span class="dot"></span><h3>Software design and building</h3><p>Websites, apps and business tools, designed and built from the first sketch to launch.</p><span class="more">Ask about this →</span></button></div>
-      <div class="float"><button class="card" style="--c:#a78bfa" data-s="Data scraping and pipelines"><span class="dot"></span><h3>Data scraping and pipelines</h3><p>Collect data from the web and turn it into clean, organised feeds your business can use.</p><span class="more">Ask about this →</span></button></div>
-      <div class="float"><button class="card" style="--c:#f472b6" data-s="Ads management"><span class="dot"></span><h3>Ads management</h3><p>Setting up, running and improving your online ad campaigns.</p><span class="more">Ask about this →</span></button></div>
-      <div class="float"><button class="card" style="--c:#fb923c" data-s="Photo, video and drone production"><span class="dot"></span><h3>Photo, video and drone production</h3><p>Professional photos, video and aerial footage for tourism and real estate.</p><span class="more">Ask about this →</span></button></div>
-      <div class="float"><button class="card" style="--c:#34d399" data-s="Cinematic 3D walkthroughs"><span class="dot"></span><h3>Cinematic 3D walkthroughs</h3><p>Animated tours that take viewers through a building, whether it exists yet or not.</p><span class="more">Ask about this →</span></button></div>
-      <div class="float"><button class="card" style="--c:#facc15" data-s="Software ideas, developed and pitched"><span class="dot"></span><h3>Software ideas, developed and pitched</h3><p>We create large software ideas and pitch them to people with the money to buy the idea and the software outright.</p><span class="more">Ask about this →</span></button></div>
+<section id="services" class="svc">
+  <div class="wrap">
+    <h2 class="chrome">What we do</h2>
+    <p class="sub">Select a service and the email button below will be set up for that enquiry.</p>
+    <div class="grid">
+      <button class="card" data-s="Software building and design"><div class="img" data-i="photo-1555066931-4365d14bab8c"></div><div class="body"><h3>Software building and design</h3><p>Websites, apps and business tools, designed and built from first sketch to launch.</p><span class="tag">Selected. Email us below.</span></div></button>
+      <button class="card" data-s="Data scraping and pipelines"><div class="img" data-i="photo-1551288049-bebda4e38f71"></div><div class="body"><h3>Data scraping and pipelines</h3><p>We collect data from the web and turn it into clean, organised feeds your business can use.</p><span class="tag">Selected. Email us below.</span></div></button>
+      <button class="card" data-s="Ads management"><div class="img" data-i="photo-1460925895917-afdab827c52f"></div><div class="body"><h3>Ads management</h3><p>We set up, run and improve your online ad campaigns.</p><span class="tag">Selected. Email us below.</span></div></button>
+      <button class="card wide" data-s="Photo, video and drone production"><div class="img" data-i="photo-1473968512647-3e447244af8f"></div><div class="body"><h3>Photo, video and drone production</h3><p>Professional photos, video and aerial footage for tourism and real estate.</p><span class="tag">Selected. Email us below.</span></div></button>
+      <button class="card wide" data-s="Cinematic 3D walkthroughs"><div class="img" data-i="photo-1486406146926-c627a92ad1ab"></div><div class="body"><h3>Cinematic 3D walkthroughs</h3><p>Animated tours through a building, whether it has been built yet or not.</p><span class="tag">Selected. Email us below.</span></div></button>
+      <button class="card wide" data-s="Software ideas, developed and pitched"><div class="img" data-i="photo-1556761175-5973dc0f32e7"></div><div class="body"><h3>Software ideas, developed and pitched</h3><p>We create large software ideas and pitch them to buyers who can pay for the idea and the software outright.</p><span class="tag">Selected. Email us below.</span></div></button>
+      <button class="card wide" data-s="Grant writing and business funding"><div class="img" data-i="photo-1450101499163-c8848c66ca85"></div><div class="body"><h3>Grant writing and business funding</h3><p>We write grant applications and help you find and apply for business funding.</p><span class="tag">Selected. Email us below.</span></div></button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="contact" class="contact">
-    <h2>Have a project or an idea?</h2>
+<section id="how" class="how">
+  <div class="wrap">
+    <h2 class="chrome">How we work</h2>
+    <p class="sub">A short path from your idea to something live.</p>
+    <div class="steps">
+      <div class="step"><h3>Tell us the goal</h3><p>Send a few lines about what you need. We reply with what we would do and what it takes.</p></div>
+      <div class="step"><h3>We build it</h3><p>Design, code, data, footage or ads. You see progress as it happens, not only at the end.</p></div>
+      <div class="step"><h3>Launch and improve</h3><p>We put it in front of your customers, then measure it and keep making it better.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2 class="chrome">Have a project or an idea?</h2>
     <p id="cmsg">Tell us what you need and we’ll reply with how we can help.</p>
     <a class="btn" id="mail" href="mailto:YOUR_EMAIL@example.com">Email us</a>
-  </section>
-
-  <footer>© 2026 DLX Ace Tec</footer>
-</div>
+    <img src="logo.jpg" alt="DLX Ace Tec, dlxacetec.com">
+  </div>
+</section>
+<footer><div class="wrap">© 2026 DLX Ace Tec · dlxacetec.com</div></footer>
 
 <script>
-// Selecting a service highlights it and points the email button at that service
 const EMAIL="YOUR_EMAIL@example.com";
+// Unsplash photos: if one fails to load, the card keeps its blue gradient
+document.querySelectorAll(".img").forEach(d=>{
+  const u="https://images.unsplash.com/"+d.dataset.i+"?auto=format&fit=crop&w=900&q=70",i=new Image();
+  i.onload=()=>d.style.backgroundImage="url("+u+")";i.src=u;
+});
 const cards=document.querySelectorAll(".card"),mail=document.getElementById("mail"),cmsg=document.getElementById("cmsg");
 cards.forEach(c=>c.addEventListener("click",()=>{
   const was=c.classList.contains("on");
@@ -121,60 +139,6 @@ cards.forEach(c=>c.addEventListener("click",()=>{
   mail.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("Enquiry: "+c.dataset.s);
   cmsg.textContent="You selected “"+c.dataset.s+"”. Email us and we’ll get back to you.";
 }));
-
-// Live background: wireframe city with coloured data flowing through its streets
-(function(){
-  const c=document.getElementById("bg"),x=c.getContext("2d"),D=Math.min(devicePixelRatio||1,2);
-  let W,H,mx=0,ang=0,t0=performance.now();
-  const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const col=["56,189,248","167,139,250","244,114,182","251,146,60","52,211,153","250,204,21"];
-  function size(){W=innerWidth;H=innerHeight;c.width=W*D;c.height=H*D;x.setTransform(D,0,0,D,0,0)}
-  addEventListener("resize",size);size();
-  addEventListener("pointermove",e=>{mx=e.clientX/W-.5});
-  const B=[];
-  for(let i=-4;i<=4;i++)for(let j=-4;j<=4;j++){
-    if(Math.random()<.3)continue;
-    B.push({x:i*70,z:j*70,w:22+Math.random()*14,h:25+Math.random()*(Math.abs(i)+Math.abs(j)<4?210:90)});
-  }
-  const P=[];
-  for(let k=0;k<50;k++)P.push({ax:k%2,l:(Math.floor(Math.random()*9)-4)*70+35,p:Math.random()*700-350,v:(.4+Math.random()*.9)*(Math.random()<.5?-1:1),c:col[k%6]});
-  function pr(px,py,pz,a,tilt){
-    const ca=Math.cos(a),sa=Math.sin(a),X=px*ca-pz*sa;let Z=px*sa+pz*ca;
-    const ct=Math.cos(tilt),st=Math.sin(tilt),Y=py*ct-Z*st;Z=py*st+Z*ct;
-    const s=950/(950+Z+260);
-    return[(W>760?W*.66:W*.5)+X*s*1.2,H*.55-Y*s*1.2,s];
-  }
-  function frame(now){
-    const dt=Math.min(now-t0,50);t0=now;
-    if(!still)ang+=dt*.0001;
-    const a=ang+mx*.5,tilt=.5;
-    x.clearRect(0,0,W,H);x.lineWidth=1;
-    x.strokeStyle="rgba(90,150,255,.12)";x.beginPath();
-    for(let g=-315;g<=315;g+=70){
-      let p=pr(g,0,-315,a,tilt),q=pr(g,0,315,a,tilt);x.moveTo(p[0],p[1]);x.lineTo(q[0],q[1]);
-      p=pr(-315,0,g,a,tilt);q=pr(315,0,g,a,tilt);x.moveTo(p[0],p[1]);x.lineTo(q[0],q[1]);
-    }
-    x.stroke();
-    for(const b of B){
-      const hw=b.w/2,v=[];
-      for(const y of[0,b.h])for(const[sx,sz]of[[-1,-1],[1,-1],[1,1],[-1,1]])v.push(pr(b.x+sx*hw,y,b.z+sz*hw,a,tilt));
-      x.beginPath();
-      for(let i=0;i<4;i++){x.moveTo(v[i][0],v[i][1]);x.lineTo(v[i+4][0],v[i+4][1]);const n=(i+1)%4;x.moveTo(v[i][0],v[i][1]);x.lineTo(v[n][0],v[n][1])}
-      x.strokeStyle="rgba(90,150,255,.22)";x.stroke();
-      x.beginPath();
-      for(let i=4;i<8;i++){const n=4+(i-3)%4;x.moveTo(v[i][0],v[i][1]);x.lineTo(v[n][0],v[n][1])}
-      x.strokeStyle="rgba(140,190,255,.55)";x.stroke();
-    }
-    for(const p of P){
-      if(!still){p.p+=p.v*dt*.06;if(p.p>350)p.p=-350;if(p.p<-350)p.p=350}
-      const q=p.ax?pr(p.l,0,p.p,a,tilt):pr(p.p,0,p.l,a,tilt);
-      x.fillStyle="rgba("+p.c+",.95)";x.beginPath();x.arc(q[0],q[1],2.2*q[2]+.6,0,6.283);x.fill();
-      x.fillStyle="rgba("+p.c+",.2)";x.beginPath();x.arc(q[0],q[1],7*q[2]+1,0,6.283);x.fill();
-    }
-    if(!still)requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-})();
 </script>
 
 <script type="module">
